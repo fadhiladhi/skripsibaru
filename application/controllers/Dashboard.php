@@ -85,6 +85,9 @@ class Dashboard extends CI_Controller {
     }
    
   }
+
+  ///USER
+
   public function list_user(){
     if($this->session->userdata('token') == ''){
       return redirect(base_url('dashboard/login'));
@@ -133,12 +136,12 @@ class Dashboard extends CI_Controller {
   }
 
   public function delete_user($id){
-    $url = base_url('/api/main/users/id/'.$id);
+           $url = base_url('/api/main/users/id/'.$id);
            $curl = curl_init($url);
-           curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+           curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "delete");
        
            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-             'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEwIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTYyMjI3MzI5NiwiZXhwIjoxNjIyMjkxMjk2fQ.4J1Lk8hWVHu02lVfz9ZLAeVDg5JQb3S6mlsKK3u8UCc'
+             'Authorization: Bearer '.$this->session->userdata('token')
              )
            );
            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
@@ -147,6 +150,8 @@ class Dashboard extends CI_Controller {
            // Free up the resources $curl is using
            curl_close($curl);
            $deleteUser = json_decode($result,true);
+
+           var_dump($deleteUser);die();
            if($deleteUser['status'] == 200){
              echo ("<script LANGUAGE='JavaScript'>
              window.alert('User deleted!');
@@ -159,6 +164,9 @@ class Dashboard extends CI_Controller {
              </script>");
            }
    }
+
+   ///DATA IKAN
+
   public function list_dataikan(){
     if($this->session->userdata('token') == ''){
       return redirect(base_url('dashboard/login'));
@@ -185,7 +193,7 @@ class Dashboard extends CI_Controller {
 
     $getUser = json_decode($result,true);
     $user['datauser'] = $getUser['data'];
-    
+
 
     $this->load->view('layout/header');
     $this->load->view('layout/sidebar');
@@ -194,45 +202,238 @@ class Dashboard extends CI_Controller {
     $this->load->view('layout/footer');
   }}
   }
-///Data pengiriman
 
-  public function list_datapengiriman(){
-    if($this->session->userdata('token') == ''){
-      return redirect(base_url('dashboard/login'));
-    }else{
-      if($this->session->userdata('isLoginAdmin') == true){
-        $data = [
-          'username' => $this->session->userdata('username'),
-          'title' => 'Dashboard | User'
-        ];
 
-    $url = base_url('/api/main/datapengiriman');
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+/// DATA PENGIRIMAN
 
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-      'Authorization: Bearer '.$this->session->userdata('token')
-      )
-    );
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
-    // Send the request
-    $result = curl_exec($curl);
-    // Free up the resources $curl is using
-    curl_close($curl);
+public function list_datapengiriman(){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'title' => 'Dashboard | User'
+      ];
 
-    $getUser = json_decode($result,true);
-    $user['datauser'] = $getUser['data'];
-    
+  $url = base_url('/api/main/datapengiriman');
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
 
-    $this->load->view('layout/header');
-    $this->load->view('layout/sidebar');
-    $this->load->view('layout/navbar');
-    $this->load->view('datapengiriman',$user);
-    $this->load->view('layout/footer');
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'Authorization: Bearer '.$this->session->userdata('token')
+    )
+  );
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+  // Send the request
+  $result = curl_exec($curl);
+  // Free up the resources $curl is using
+  curl_close($curl);
+
+  $getUser = json_decode($result,true);
+  $user['datauser'] = $getUser['data'];
+  
+
+  $this->load->view('layout/header');
+  $this->load->view('layout/sidebar');
+  $this->load->view('layout/navbar');
+  $this->load->view('datapengiriman',$user);
+  $this->load->view('layout/footer');
   }
-
+}
 }
 
+/// DATA PENJUALAN
 
+public function list_datapenjualan(){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'title' => 'Dashboard | User'
+      ];
+
+  $url = base_url('/api/main/datapenjualan');
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'Authorization: Bearer '.$this->session->userdata('token')
+    )
+  );
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+  // Send the request
+  $result = curl_exec($curl);
+  // Free up the resources $curl is using
+  curl_close($curl);
+
+  $getUser = json_decode($result,true);
+  $user['datauser'] = $getUser['data'];
+  
+
+  $this->load->view('layout/header');
+  $this->load->view('layout/sidebar');
+  $this->load->view('layout/navbar');
+  $this->load->view('datapenjualan',$user);
+  $this->load->view('layout/footer');
+    }
   }
+}
+
+public function create_dataikan(){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'title' => 'Dashboard | Menu'
+      ];
+      $dataCreate = [
+        'tglpenjualan'=> $this->input->post('tglpenjualan'),
+        'keterangan'=> $this->input->post('keterangan'),
+        'iduser'=> $this->input->post('iduser')
+      ];
+
+
+            $url = base_url('/api/main/datapenjualan');
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+              'Authorization: Bearer '.$this->session->userdata('token')
+              )
+            );
+    
+            /* Set JSON data to POST */
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dataCreate);
+    
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+            // Send the request
+            $result = curl_exec($curl);
+            // Free up the resources $curl is using
+            curl_close($curl);
+    
+            $getMenu = json_decode($result,true);
+    
+            
+            echo ("<script LANGUAGE='JavaScript'>
+            window.alert('Berhasil di simpan');
+            window.location.href='".base_url('dashboard/list_datapenjualan')."';
+            </script>");
+            return;
+
+        
+    }
+  }
+}
+public function edit_dataikan($id){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'title' => 'Dashboard | Menu'
+      ];
+      $url = base_url('/api/main/dataikan/id/'.$id);
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+  
+      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer '.$this->session->userdata('token')
+        )
+      );
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+      // Send the request
+      $result = curl_exec($curl);
+      // Free up the resources $curl is using
+      curl_close($curl);
+
+      $getMenu = json_decode($result,true);
+      $menu['datamenu'] = $getMenu['data'];
+
+
+
+      $this->load->view('layout/header',$data);
+      $this->load->view('layout/sidebar');
+      $this->load->view('layout/navbar',$data);
+      $this->load->view('edit_dataikan',$menu);
+      $this->load->view('layout/footer');
+    }
+  }
+}
+public function proses_edit_dataikan($id){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'title' => 'Dashboard | Menu'
+      ];
+      $dataCreate = [
+        'namaikan'=> $this->input->post('nama'),
+        'jenisikan'=> $this->input->post('jenisikan'),
+        'harga'=> $this->input->post('harga'),
+        'deskripsi'=> $this->input->post('deskripsi'),
+        'stock'=> $this->input->post('stock')
+      ];
+
+      $url = base_url('/api/main/dataikan/id/'.$id);
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+  
+      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer '.$this->session->userdata('token')
+        )
+      );
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+      // Send the request
+      $result = curl_exec($curl);
+      // Free up the resources $curl is using
+      curl_close($curl);
+
+      $getMenu = json_decode($result,true);
+      $datamenu = $getMenu['data'];
+
+
+            $dataPut= json_encode($dataCreate);
+
+
+            // var_dump($dataCreate);die();
+            $url = base_url('/api/main/dataikan/id/'.$id);
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+        
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+              'Authorization: Bearer '.$this->session->userdata('token'),
+              'Content-Type:application/json'
+              )
+            );
+
+            /* Set JSON data to POST */
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dataPut);
+    
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+            // Send the request
+            $result = curl_exec($curl);
+            // Free up the resources $curl is using
+            curl_close($curl);
+    
+            $getMenu = json_decode($result,true);
+            $menu['datamenu'] = $getMenu['status'];
+    
+            echo ("<script LANGUAGE='JavaScript'>
+            window.alert('Berhasil di edit');
+            window.location.href='".base_url('dashboard/list_dataikan')."';
+            </script>");
+            return;
+
+    }
+  }
+}
+  
 }

@@ -2,7 +2,7 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-table"></i>LIST PENGIRIMAN</h3>
+            <h3 class="page-header"><i class="fa fa-table"></i>LIST PENJUALAN</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
               <li><i class="fa fa-table"></i>Master Data</li>
@@ -19,30 +19,26 @@
                 <tbody>
                   <tr>
                     <th>ID user</th>
-                    <th>Tanggal pemesanan</th>
-                    <th>Tanggal Pengiriman</th>
-                    <th>Jasa Pengiriman</th>
-                    <th>Nama Penerima</th>
+                    <th>Tanggal Penjualan</th>
+                    <th>Keterangan</th>
                     
                   </tr>
 
                   <?php
                     $no = 1;
-                    foreach($datauser as $data  => $datapengiriman){
+                    foreach($datauser as $data  => $datapenjualan){
                 ?>
 
                   <tr>
                     <td><?= $no; ?></td>
-                    <td><?= $datapengiriman['iduser'];?></td>
-                    <td><?= $datapengiriman['tglpemesanan'];?></td>
-                    <td><?= $datapengiriman['tglpengiriman'];?></td>
-                    <td><?= $datapengiriman['jasapengiriman'];?></td>
-                    <td><?= $datapengiriman['namapenerima'];?></td>
+                    <td><?= $datapenjualan['iduser'];?></td>
+                    <td><?= $datapenjualan['tglpenjualan'];?></td>
+                    <td><?= $datapenjualan['keterangan'];?></td>
                     
                     <td>
                       <div class="btn-group">
-                      <a class="btn btn-edit" href="<?= base_url('dashboard/edit_datapengiriman/'.$datapengiriman['id'])?>">edit</i></a>
-                        <a class="btn btn-danger" href="<?= base_url('dashboard/delete_datapengiriman/'.$datapengiriman['id'])?>"><i class="icon_close_alt2"></i></a>
+                      <a class="btn btn-edit" href="<?= base_url('dashboard/edit_datapejualan/'.$datapenjualan['id'])?>">edit</i></a>
+                        <a class="btn btn-danger" href="<?= base_url('dashboard/delete_datapenjualan/'.$datapenjualan['id'])?>"><i class="icon_close_alt2"></i></a>
                     </div>
                     </td>
                   </tr>
@@ -59,3 +55,4 @@
         <!-- page end-->
       </section>
     </section>
+    

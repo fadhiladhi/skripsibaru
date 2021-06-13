@@ -3,6 +3,7 @@
         <div class="row">
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-table"></i>LIST USER</h3>
+            
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
               <li><i class="fa fa-table"></i>Master Data</li>
@@ -40,6 +41,7 @@
                     <td><?= $user['username'];?></td>
                     <td>
                       <div class="btn-group">
+                      <a class="btn btn-edit" href="<?= base_url('dashboard/edit_user/'.$user['id'])?>">edit</i></a>
                         <a class="btn btn-danger" href="<?= base_url('dashboard/delete_user/'.$user['id'])?>"><i class="icon_close_alt2"></i></a>
                     </div>
                     </td>
