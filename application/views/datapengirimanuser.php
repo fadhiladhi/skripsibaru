@@ -3,10 +3,6 @@
         <div class="row">
           <div class="col-lg-12">
             <h3 class="page-header"></i>DATA PENGIRIMAN</h3>
-            <button class="btn btn-success"   type="button" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-plus"></i>
-            Tambah
-            </button>
             
           </div>
         </div>
@@ -21,7 +17,6 @@
                     <th>No</th>
                     <th>Tanggal pemesanan</th>
                     <th>Tanggal Pengiriman</th>
-                    <th>Nama Ikan</th>
                     <th>Jasa Pengiriman</th>
                     <th>Nama Penerima</th>
                     
@@ -36,16 +31,10 @@
                     <td><?= $no; ?></td>
                     <td><?= $datapengiriman['tglpemesanan'];?></td>
                     <td><?= $datapengiriman['tglpengiriman'];?></td>
-                    <td><?= $datapengiriman['namaikan'];?></td>
                     <td><?= $datapengiriman['jasapengiriman'];?></td>
                     <td><?= $datapengiriman['namapenerima'];?></td>
                     
-                    <td>
-                      <div class="btn-group">
-                      <a class="btn btn-edit" href="<?= base_url('dashboard/edit_pengiriman/'.$datapengiriman['id'])?>">edit</i></a>
-                        <a class="btn btn-danger" href="<?= base_url('dashboard/delete_datapengiriman/'.$datapengiriman['id'])?>"><i class="icon_close_alt2"></i></a>
-                    </div>
-                    </td>
+                    
                   </tr>
                 <?php
 
@@ -62,39 +51,43 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pengiriman</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Menu</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
       <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/create_datapengiriman'); ?>">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal Pemesanan</label>
-                    <input type="date" class="form-control" name="tglpemesanan" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal Pengiriman</label>
-                    <input type="date" class="form-control" name="tglpengiriman" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Ikan</label>
-                    <input type="text" class="form-control" name="namaikan" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Jasa Pengiriman</label>
-                    <input type="text" class="form-control" name="jasapengiriman" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Pengirima</label>
-                    <input type="text" class="form-control" name="namapenerima" required>
-                </div>
-
-
-
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tanggal Pemesanan</label>
+                <input type="text" class="form-control" name="tglpemesanan" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tanggal Pengiriman</label>
+                <input type="text" class="form-control" name="tglpengiriman" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Jasa Pengiriman</label>
+                <input type="text" class="form-control" name="jasapengiriman" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nama Penerima</label>
+                <input type="nama" class="form-control" name="namapenerima" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Id user</label>
+                <input type="nama" class="form-control" name="iduser" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">stock</label>
+                <input type="number" class="form-control" name="stock" required>
+            </div>
+            
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
       </div>
     </div>

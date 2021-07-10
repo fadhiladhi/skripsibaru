@@ -168,7 +168,7 @@ class Main extends BD_Controller {
                     'status' => 200,
                     'error' => false,
                     'message' => 'Success get data user',
-                    'data'=> $getDatapenjualanById
+                    'data'=> $getDatauserById
                 ];
                 $this->response($output, REST_Controller::HTTP_OK);
             }else{
@@ -183,7 +183,7 @@ class Main extends BD_Controller {
         }
 
     }
-    public function user_put(){
+    public function users_put(){
 
         $id = (int) $this->get('id');
         if($id){
@@ -196,8 +196,6 @@ class Main extends BD_Controller {
                 $data = [
                     "nama"      => $this->put('nama'),
                     "password"  => sha1($this->put('password')),
-                    "email"   => $this->put('email'),
-                    "alamat"   => $this->put('alamat'),
                     "nohp"   => $this->put('nohp'),
                     "role"   => $this->put('role'),
                     "username"   => $this->put('username')
@@ -271,6 +269,7 @@ class Main extends BD_Controller {
         $harga = $this->post('harga');
         $deskripsi = $this->post('deskripsi');
         $stock = $this->post('stock');
+        $img_url = $this->post('img_url');
 
         $data = [
             "id" =>$id,
@@ -279,6 +278,7 @@ class Main extends BD_Controller {
             "harga" =>$harga,
             "deskripsi" =>$deskripsi,
             "stock" =>$stock,
+            "img_url" => $img_url
         ];
 
         $createUser = $this->Crud->createData('dataikan',$data);
@@ -311,7 +311,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
-            $getDataikan = $this->Crud->readData('id,namaikan,jenisikan,harga,deskripsi,stock,','dataikan')->result();
+            $getDataikan = $this->Crud->readData('id,namaikan,jenisikan,harga,deskripsi,stock,img_url','dataikan')->result();
             if ($getDataikan)
             {
                 // Set the response and exit
@@ -340,7 +340,7 @@ class Main extends BD_Controller {
             $where = [
                 'id'=> $id
             ];
-            $getDataikanById = $this->Crud->readData('id,namaikan,jenisikan,harga,deskripsi,stock,','dataikan',$where)->result();
+            $getDataikanById = $this->Crud->readData('id,namaikan,jenisikan,harga,deskripsi,stock,img_url,','dataikan',$where)->result();
 
             if($getDataikanById){
                 $output = [
@@ -445,20 +445,60 @@ class Main extends BD_Controller {
         $id = $this->post('id');
         $tglpemesanan = $this->post('tglpemesanan');
         $tglpengiriman = $this->post('tglpengiriman');
+        $namaikan = $this->post('namaikan');
         $jasapengiriman = $this->post('jasapengiriman');
         $namapenerima = $this->post('namapenerima');
-        $iduser = $this->post('iduser');
 
         $data = [
             "id" =>$id,
             "tglpemesanan" =>$tglpemesanan,
             "tglpengiriman" =>$tglpengiriman,
+            "namaikan" => $namaikan,
             "jasapengiriman" =>$jasapengiriman,
             "namapenerima" =>$namapenerima,
-            "iduser" =>$iduser,
         ];
 
         $createDatapengiriman = $this->Crud->createData('datapengiriman',$data);
+
+    if($createDatapengiriman){
+        $output = [
+            'status' => 200,
+            'error' => false,
+            'message' => 'success create data pengiriman',
+            'data' => $data
+        ];
+            $this->set_response($output,REST_Controller::HTTP_OK);
+        
+    }else{
+        $output = [
+            'status'=> 400,
+            'error'=> false,
+            'message'=> 'failed create data pengiriman',
+            'data'=>[]
+        ];
+        $this->set_response($output,REST_Controller::HTTP_BAD_REQUEST);
+    }
+    }
+    public function datapenjualan_post(){
+        $id = $this->post('id');
+        $namapenerima = $this->post('namapenerima');
+        $namaikan = $this->post('namaikan');
+        $harga = $this->post('harga');
+        $tglpengiriman = $this->post('tglpengiriman');
+        $jasapengiriman = $this->post('jasapengiriman');
+        $keterangan = $this->post('keterangan');
+
+        $data = [
+            "id" =>$id,
+            "namapenerima" =>$namapenerima,
+            "namaikan" =>$namaikan,
+            "harga" => $harga,
+            "tglpengiriman" =>$tglpengiriman,
+            "jasapengiriman" =>$jasapengiriman,
+            "keterangan" =>$keterangan,
+        ];
+
+        $createDatapengiriman = $this->Crud->createData('datapenjualan',$data);
 
     if($createDatapengiriman){
         $output = [
@@ -488,7 +528,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
-            $getDatapengiriman = $this->Crud->readData('id,tglpemesanan,tglpengiriman,jasapengiriman,namapenerima,iduser,','datapengiriman')->result();
+            $getDatapengiriman = $this->Crud->readData('id,tglpemesanan,tglpengiriman,namaikan,jasapengiriman,namapenerima,','datapengiriman')->result();
             if ($getDatapengiriman)
             {
                 // Set the response and exit
@@ -517,7 +557,7 @@ class Main extends BD_Controller {
             $where = [
                 'id'=> $id
             ];
-            $getDatapengirimanById = $this->Crud->readData('id,tglpemesanan,tglpengiriman,jasapengiriman,namapenerima,iduser,','datapengiriman',$where)->result();
+            $getDatapengirimanById = $this->Crud->readData('id,tglpemesanan,tglpengiriman,namaikan,jasapengiriman,namapenerima,','datapengiriman',$where)->result();
 
             if($getDatapengirimanById){
                 $output = [
@@ -552,9 +592,9 @@ class Main extends BD_Controller {
                 $data = [
                     "tglpemesanan"      => $this->put('tglpemesanan'),
                     "tglpengiriman"  => $this->put('tglpengiriman'),
+                    "namaikan" => $this->put('namaikan'),
                     "jasapengiriman"  => $this->put('jasapengiriman'),
                     "namapenerima"    => $this->put('namapenerima'),
-                    "iduser"   => $this->put('iduser'),
                 ];
 
                 $updateData = $this->Crud->updateData('datapengiriman',$data,$where);
@@ -618,17 +658,23 @@ class Main extends BD_Controller {
 
     ///Data Penjualan
 
-    public function datapenjualan_post(){
+    public function datapenjualan1_post(){
         $id = $this->post('id');
-        $tglpenjualan = $this->post('tglpenjualan');
+        $namapenerima = $this->post('namapenerima');
+        $namaikan = $this->post('namaikan');
+        $harga = $this->post('harga');
+        $tglpengiriman = $this->post('tglpengiriman');
+        $jasapengiriman = $this->post('jasapengiriman');
         $keterangan = $this->post('keterangan');
-        $iduser = $this->post('iduser');
 
         $data = [
             "id" =>$id,
-            "tglpenjualan" =>$tglpenjualan,
+            "namapenerima" =>$namapenerima,
+            "namaikan" =>$namaikan,
+            "harga" =>$harga,
+            "tglpengiriman" =>$tglpengiriman,
+            "jasapengiriman" =>$jasapengiriman,
             "keterangan" =>$keterangan,
-            "iduser" =>$iduser,
         ];
 
         $createDatapenjualan = $this->Crud->createData('datapenjualan',$data);
@@ -661,7 +707,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
-            $getDatapenjualan = $this->Crud->readData('id,tglpenjualan,keterangan,iduser,','datapenjualan')->result();
+            $getDatapenjualan = $this->Crud->readData('id,namapenerima,namaikan,harga,tglpengiriman,jasapengiriman,keterangan','datapenjualan')->result();
             if ($getDatapenjualan)
             {
                 // Set the response and exit
@@ -690,7 +736,7 @@ class Main extends BD_Controller {
             $where = [
                 'id'=> $id
             ];
-            $getDatapenjualanById = $this->Crud->readData('id,tglpenjualan,keterangan,iduser,','datapenjualan',$where)->result();
+            $getDatapenjualanById = $this->Crud->readData('id,namapenerima,namaikan,harga,tglpengiriman,jasapengiriman,keterangan','datapenjualan',$where)->result();
 
             if($getDatapenjualanById){
                 $output = [
@@ -723,9 +769,12 @@ class Main extends BD_Controller {
 
             if($cekId > 0){
                 $data = [
-                    "tglpenjualan"      => $this->put('tglpenjualan'),
-                    "keterangan"  => $this->put('keterangan'),
-                    "iduser"   => $this->put('iduser'),
+                    "namapenerima"      => $this->put('namapenerima'),
+                    "namaikan"  => $this->put('namaikan'),
+                    "harga"   => $this->put('harga'),
+                    "tglpengiriman"   => $this->put('tglpengiriman'),
+                    "jasapengiriman"   => $this->put('jasapengiriman'),
+                    "keterangan"   => $this->put('keterangan'),
                 ];
 
                 $updateData = $this->Crud->updateData('datapenjualan',$data,$where);

@@ -103,6 +103,7 @@ sub {
 }
 img {
   border: 0;
+  margin-left: 33px;
 }
 svg:not(:root) {
   overflow: hidden;

@@ -14,9 +14,7 @@
 
 body {
 
-    color: #797979;
-
-    background: #eeeeee;
+    background: #808080;
 
     font-family: 'Lato', sans-serif;
 
@@ -516,7 +514,7 @@ table tr th { color: #688a7e;}
 
     position: fixed;
 
-    background: #394a59;
+    background: #333;
 
 }
 
@@ -566,7 +564,7 @@ ul.sidebar-menu {
 
 ul.sidebar-menu li ul.sub li{
 
-    background: #394a59;
+    background: #092f3d;
 
     margin-bottom: 0;
 
@@ -1424,7 +1422,6 @@ div[data-role="editor-toolbar"] {
 
     display: inline-block;
 
-    float: right;
 
     font-size: 13px;
 
@@ -2390,7 +2387,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-}
+
 
 .panel.panel-default.panel-heading {
 
@@ -3316,11 +3313,6 @@ div[data-role="editor-toolbar"] {
 
 
 
-.widget .nav-tabs > li a {
-
-
-
-}
 
 
 
@@ -4662,12 +4654,6 @@ ul.ft-link li a i {
 
 
 
-.post-btn {
-
-
-
-}
-
 
 
 .post-btn a {
@@ -4892,11 +4878,6 @@ ul.ft-link li a i {
 
 }
 
-.profile-widget{
-
-    /*padding-left: 20px 15px 30px 15px;*/
-
-}
 
 .profile-widget .twt-category{
 
@@ -4990,11 +4971,7 @@ ul.ft-link li a i {
 
 }
 
-.profile-foot .active{
 
-
-
-}
 
 .profile-foot a{
 
@@ -5516,13 +5493,6 @@ ul.ft-link li a i {
 
 }
 
-
-
-.weather-category ul li a {
-
-
-
-}
 
 
 
@@ -6506,7 +6476,6 @@ ul.inbox-pagination li {
 
   animation: square 3s linear infinite;
 
-  -webkit-background-clip: text;
 
   color:transparent;
 
@@ -8366,7 +8335,6 @@ table.sliders tr td {
 
     transition: left 0.25s ease-out;
 
-    -webkit-backface-visibility: hidden;
 
 }
 
@@ -8450,7 +8418,6 @@ table.sliders tr td {
 
     transition: 0.25s ease-out;
 
-    -webkit-backface-visibility: hidden;
 
 }
 
@@ -8516,7 +8483,6 @@ table.sliders tr td {
 
     transition: 0.25s ease-out;
 
-    -webkit-backface-visibility: hidden;
 
 }
 
@@ -8634,7 +8600,6 @@ table.sliders tr td {
 
     transition: 0.14s linear;
 
-    -webkit-backface-visibility: hidden;
 
 }
 
@@ -8768,7 +8733,6 @@ table.sliders tr td {
 
     transition: 0.25s;
 
-    -webkit-backface-visibility: hidden;
 
 }
 
@@ -9218,7 +9182,6 @@ table.sliders tr td {
 
 .user-heading.alt a {
 
-    float: left;
 
     margin-right: 15px;
 
@@ -9426,12 +9389,6 @@ table.sliders tr td {
 
 
 
-.tasi-tab .media-body p {
-
-    /*color: #b8bac6;*/
-
-}
-
 
 
 
@@ -9536,11 +9493,6 @@ table.sliders tr td {
 
 
 
-.profile-activity .act-in  .arrow {
-
-    /*border-right: 8px solid #F4F4F4 !important;*/
-
-}
 
 .profile-activity .act-in .arrow {
 
@@ -9564,11 +9516,6 @@ table.sliders tr td {
 
 
 
-.profile-activity .act-out  .arrow {
-
-    /*border-right: 8px solid #34aadc !important;*/
-
-}
 
 .profile-activity .act-out .arrow {
 
@@ -9650,11 +9597,6 @@ table.sliders tr td {
 
 }
 
-.activity-body {
-
-    /*margin-left: 80px;*/
-
-}
 
 .act-time .act-in .text {
 

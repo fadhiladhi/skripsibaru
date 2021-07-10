@@ -4,7 +4,7 @@
       </div>
 
       <!--logo start-->
-      <a href="index.html" class="logo"> CAPLINBETTA <span class="lite"> SHOP </span></a>
+      <a href="<?=base_url('dashboard/')?>" class="logo"> CAPLINBETTA <span class="lite"> SHOP </span></a>
       <!--logo end-->
 
       <div class="top-nav notification-row">
@@ -14,14 +14,14 @@
           <!-- user login dropdown start-->
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="username">My Profile</span>
+                            <span class="username">keluar</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
               <div class="log-arrow-up"></div>
               <li class="eborder-top">
               <li>
-                <a href="dashboard/logout"><i class="icon_key_alt"></i> Log Out</a>
+                <a href="<?=base_url('dashboard/logout')?>"><i class="icon_key_alt"></i> Keluar</a>
               </li>
             </ul>
           </li>

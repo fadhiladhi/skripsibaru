@@ -2,11 +2,8 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"></i>DATA IKAN</h3>
-            <button class="btn btn-success"   type="button" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-plus"></i>
-            Tambah
-            </button>
+            <h3 class="page-header"></i>LIST DATA IKAN</h3>
+           
             <br><br>
 <!-- DataT
             
@@ -25,8 +22,7 @@
                     <th>Harga</th>
                     <th>Deskripsi</th>
                     <th>Stock</th>
-                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gambar</th>
-                    <th>Action</th>
+                    <th>Gambar</th>
                   </tr>
 
                   <?php
@@ -40,12 +36,11 @@
                     <td><?= $dataikan['harga'];?></td>
                     <td><?= $dataikan['deskripsi'];?></td>
                     <td><?= $dataikan['stock'];?></td>
-                    <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150" ></td>
+                    <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150"></td>
                     <td>
-                      <div class="btn-group">
-                        <a class="btn btn-edit" href="<?= base_url('dashboard/edit_dataikan/'.$dataikan['id'])?>">edit</i></a>
-                        <a class="btn btn-danger" href="<?= base_url('dashboard/delete_dataikan/'.$dataikan['id'])?>"><i class="icon_close_alt2"></i></a>
-                    </div>
+                    <a class="btn btn-success" href="<?= base_url('dashboard/kirim_wa/'.$dataikan['id'])?>">WA
+                    
+                    
                     </td>
                   </tr>
                 <?php

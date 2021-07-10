@@ -3,13 +3,17 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {font-family: Arial, Helvetica, sans-serif;
+  background-image: url('<?=base_url('uploads/bg.jpg')?>');}
 form {
   border: 3px solid #f1f1f1;
   margin: 0px auto;
+  margin-top: 120px;
  width:30%;
 }
-
+div {
+  background-image: url('img/bg.jpg');
+}
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -73,7 +77,7 @@ span.psw {
 <body>
 
 
-<form action="<?=base_url('dashboard/prosesLogin')?>" method="POST">
+<form action="<?=base_url('dashboard/prosesLogin')?>" method="POST" ma>
 
   <div class="container">
     <label for="uname"><b>Username</b></label>
@@ -83,15 +87,9 @@ span.psw {
     <input type="password" placeholder="Enter Password" name="password" required>
         
     <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
   </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
+  
 </form>
 
 </body>
