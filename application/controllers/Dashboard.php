@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
 
+  public function __construct(){
+    parent::__construct();
+    $this->load->library('form_validation');
+  }
+
+
+
+  
   public function index(){
 
     if($this->session->userdata('token') == ''){
@@ -864,7 +872,7 @@ public function proses_edit_dataikan($id){
         'title' => 'Dashboard | Menu'
       ];
       $dataCreate = [
-        'namaikan'=> $this->input->post('nama'),
+        'namaikan'=> $this->input->post('namaikan'),
         'jenisikan'=> $this->input->post('jenisikan'),
         'harga'=> $this->input->post('harga'),
         'deskripsi'=> $this->input->post('deskripsi'),
@@ -887,8 +895,24 @@ public function proses_edit_dataikan($id){
 
       $getMenu = json_decode($result,true);
       $datamenu = $getMenu['data'];
+     
+      $config = array(
+        'upload_path' => "./uploads/",             //path for upload
+        'allowed_types' => "gif|jpg|png|jpeg",   //restrict extension
+        'max_size' => '10000',
+        'max_width' => '10242',
+        'max_height' => '768323',
+        'file_name' => 'menu_'.date('ymdhis')
+        );
 
+        $this->load->library('upload',$config);
 
+        if($this->upload->do_upload('image')) 
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $path = $config['upload_path'].'/'.$data['upload_data']['orig_name'];
+            $filename = $data['upload_data']['orig_name'];
+            $dataCreate['img_url'] = $filename;
             $dataPut= json_encode($dataCreate);
 
 
@@ -921,6 +945,39 @@ public function proses_edit_dataikan($id){
             </script>");
             return;
 
+        }else{
+          
+            $dataCreate['image'] = $datamenu[0]['image'];
+
+            $dataPut= json_encode($dataCreate);
+            $url = base_url('/api/main/dataikan/id/'.$id);
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+        
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+              'Authorization: Bearer '.$this->session->userdata('token'),
+              'Content-Type:application/json'
+              )
+            );
+    
+            /* Set JSON data to POST */
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dataPut);
+    
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+            // Send the request
+            $result = curl_exec($curl);
+            // Free up the resources $curl is using
+            curl_close($curl);
+    
+            $getMenu = json_decode($result,true);
+            $menu['datamenu'] = $getMenu['status'];
+
+            echo ("<script LANGUAGE='JavaScript'>
+            window.alert('Berhasil di edit');
+            window.location.href='".base_url('dashboard/dataikan')."';
+            </script>");
+            return;
+        }
     }
   }
 }
@@ -1071,6 +1128,9 @@ public function edit_pengiriman($id){
     }
   }
 }
+
+
+
 public function proses_edit_datapengiriman($id){
   if($this->session->userdata('token') == ''){
     return redirect(base_url('dashboard/login'));
@@ -1254,4 +1314,174 @@ public function proses_edit_datapenjualan($id){
     }
   }
 }
+
+
+
+public function keranjang(){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'role' => $this->session->userdata('role'),
+        'title' => 'Dashboard | User'
+      ];
+ 
+
+  $url = base_url('/api/main/keranjang');
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'Authorization: Bearer '.$this->session->userdata('token')
+    )
+  );
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+  // Send the request
+  $result = curl_exec($curl);
+  // Free up the resources $curl is using
+  curl_close($curl);
+
+  $getUser = json_decode($result,true);
+
+
+  $user['datauser'] = $getUser['data'];
+  if(isset($getUser['total'])){
+    $user['datatotal'] = $getUser['total'];
+    $this->session->set_userdata('total', $user['datatotal']);
+  }else{
+    $user['datatotal'] = 0;
+  }
+
+  if($data['role']=='admin'){
+    $this->load->view('layout/header');
+    $this->load->view('layout/sidebar');
+    $this->load->view('layout/navbar');
+    $this->load->view('user',$user);
+    $this->load->view('layout/footer');
+  }else{
+    $this->load->view('layout/header');
+  $this->load->view('layout/sidebarUser');
+  $this->load->view('layout/navbar');
+  $this->load->view('keranjang',$user);
+  $this->load->view('layout/footer');
+  }
 }
+
+  }
+}
+
+
+//TAMBAH KERANJANG
+
+public function create_keranjang($id){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $data = [
+        'username' => $this->session->userdata('username'),
+        'title' => 'Dashboard | Cart'
+      ];
+
+      $url = base_url('/api/main/dataikan/id/'.$id);
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+  
+      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer '.$this->session->userdata('token')
+        )
+      );
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+      // Send the request
+      $result = curl_exec($curl);
+      // Free up the resources $curl is using
+      curl_close($curl);
+
+      $getMenu = json_decode($result,true);
+      $menu = $getMenu['data'];
+
+      $dataCreate = [
+        'namaikan'=> $menu[0]['namaikan'],
+        'jenisikan'=> $menu[0]['jenisikan'],
+        'harga'=> $menu[0]['harga'],
+        'deskripsi'=> $menu[0]['deskripsi'],
+        'stock'=> $menu[0]['stock'],
+        'img_url'=> $menu[0]['img_url'],
+        'namapemesanan'=> $this->session->userdata('username')
+      ];
+
+
+      $url = base_url('/api/main/keranjang');
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+  
+      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer '.$this->session->userdata('token')
+        )
+      );
+
+      /* Set JSON data to POST */
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dataCreate);
+
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+      // Send the request
+      $result = curl_exec($curl);
+      // Free up the resources $curl is using
+      curl_close($curl);
+
+      $getMenu = json_decode($result,true);
+      $cart['datamenu'] = $getMenu['data'];
+
+      
+      echo ("<script LANGUAGE='JavaScript'>
+      window.alert('Berhasil di tambahkan');
+      window.location.href='".base_url('dashboard/keranjang')."';
+      </script>");
+      return;
+
+    } 
+  }
+}
+
+///DELETE KERANJANG
+public function delete_keranjang($id){
+  if($this->session->userdata('token') == ''){
+    return redirect(base_url('dashboard/login'));
+  }else{
+    if($this->session->userdata('isLoginAdmin') == true){
+      $url = base_url('/api/main/keranjang/id/'.$id);
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+  
+      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer '.$this->session->userdata('token')
+        )
+      );
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // Make it so the data coming back is put into a string
+      // Send the request
+      $result = curl_exec($curl);
+      // Free up the resources $curl is using
+      curl_close($curl);
+      $deleteUser = json_decode($result,true);
+      if($deleteUser['status'] == 200){
+        echo ("<script LANGUAGE='JavaScript'>
+        window.alert('keranjang deleted!');
+        window.location.href='".base_url('dashboard/keranjang')."';
+        </script>");
+      }else{
+        echo ("<script LANGUAGE='JavaScript'>
+        window.alert('Failed to delete');
+        window.location.href='".base_url('dashboard/keranjang')."';
+        </script>");
+      }
+
+    }
+  }
+}
+
+}
+
+
+ 

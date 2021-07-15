@@ -20,7 +20,6 @@
                   <tr>
                     <th>No</th>
                     <th>Tanggal pemesanan</th>
-                    <th>Tanggal Pengiriman</th>
                     <th>Nama Ikan</th>
                     <th>Jasa Pengiriman</th>
                     <th>Nama Penerima</th>
@@ -35,7 +34,6 @@
                   <tr>
                     <td><?= $no; ?></td>
                     <td><?= $datapengiriman['tglpemesanan'];?></td>
-                    <td><?= $datapengiriman['tglpengiriman'];?></td>
                     <td><?= $datapengiriman['namaikan'];?></td>
                     <td><?= $datapengiriman['jasapengiriman'];?></td>
                     <td><?= $datapengiriman['namapenerima'];?></td>
@@ -72,10 +70,6 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Pemesanan</label>
                     <input type="date" class="form-control" name="tglpemesanan" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal Pengiriman</label>
-                    <input type="date" class="form-control" name="tglpengiriman" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Ikan</label>

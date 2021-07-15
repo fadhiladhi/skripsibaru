@@ -14,23 +14,19 @@
         <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/proses_edit_datapengiriman/'.$datamenu[0]['id']); ?>">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Pemesanan</label>
-                    <input type="text" class="form-control" name="tglpemesanan" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal Pengiriman</label>
-                    <input type="text" class="form-control" name="tglpengiriman" required>
+                    <input type="date" class="form-control" name="tglpemesanan" value="<?= $datamenu[0]['tglpemesanan']; ?>"required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Ikan</label>
-                    <input type="text" class="form-control" name="namaikan" required>
+                    <input type="text" class="form-control" name="namaikan" value="<?= set_value('namaikan',$datamenu[0]['namaikan']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Jasa Pengiriman</label>
-                    <input type="text" class="form-control" name="jasapengiriman" required>
+                    <input type="text" class="form-control" name="jasapengiriman" value="<?= set_value('jasapengiriman',$datamenu[0]['jasapengiriman']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Pengirima</label>
-                    <input type="text" class="form-control" name="namapenerima" required>
+                    <input type="text" class="form-control" name="namapenerima" value="<?= set_value('namapenerima',$datamenu[0]['namapenerima']) ?> "required>
                 </div>
 
 

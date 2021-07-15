@@ -27,7 +27,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
-            $getUser = $this->Crud->readData('id,nama,password,alamat,email,alamat,nohp,role,username','user')->result();
+            $getUser = $this->Crud->readData('id,nama,password,role,username','user')->result();
             if ($getUser)
             {
                 // Set the response and exit
@@ -56,7 +56,7 @@ class Main extends BD_Controller {
             $where = [
                 'id'=> $id
             ];
-            $getUserById = $this->Crud->readData('id,nama,password,alamat,email,alamat,nohp,role,username','user',$where)->result();
+            $getUserById = $this->Crud->readData('id,nama,password,role,username','user',$where)->result();
 
             if($getUserById){
                 $output = [
@@ -86,18 +86,12 @@ class Main extends BD_Controller {
         $id = $this->post('id');
         $nama = $this->post('nama');
         $password = $this->post('password');
-        $email = $this->post('email');
-        $alamat = $this->post('alamat');
-        $nohp = $this->post('nohp');
         $role = $this->post('role');
         $username = $this->post('username');
         $data = [
             "id" =>$id,
             "nama" =>$nama,
             "password" =>$password,
-            "email" =>$email,
-            "alamat" =>$alamat,
-            "nohp" =>$nohp,
             "role" =>$role,
             "username" =>$username,
         ];
@@ -132,7 +126,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
-            $getDatauser = $this->Crud->readData('id,nama,password,email,alamat,nohp,role,username,','user')->result();
+            $getDatauser = $this->Crud->readData('id,nama,password,role,username,','user')->result();
             if ($getDatauser)
             {
                 // Set the response and exit
@@ -161,7 +155,7 @@ class Main extends BD_Controller {
             $where = [
                 'id'=> $id
             ];
-            $getDatauserById = $this->Crud->readData('id,nama,password,email,alamat,nohp,role,username,','user',$where)->result();
+            $getDatauserById = $this->Crud->readData('id,nama,password,role,username,','user',$where)->result();
 
             if($getDatauserById){
                 $output = [
@@ -378,6 +372,8 @@ class Main extends BD_Controller {
                     "harga"  => $this->put('harga'),
                     "deskripsi"    => $this->put('deskripsi'),
                     "stock"   => $this->put('stock'),
+                    "img_url"   => $this->put('img_url'),
+
                 ];
 
                 $updateData = $this->Crud->updateData('dataikan',$data,$where);
@@ -836,4 +832,189 @@ class Main extends BD_Controller {
         }
     }
 
+    ////KERANJANG
+
+    public function keranjang_post(){
+        $id = $this->post('id');
+        $namaikan = $this->post('namaikan');
+        $jenisikan = $this->post('jenisikan');
+        $harga = $this->post('harga');
+        $deskripsi = $this->post('deskripsi');
+        $stock = $this->post('stock');
+        $img_url = $this->post('img_url');
+        $namapemesanan = $this->post('namapemesanan');
+
+        $data = [
+            "id" =>$id,
+            "namaikan" =>$namaikan,
+            "harga" =>$harga,
+            "deskripsi" =>$deskripsi,
+            "stock" =>$stock,
+            "jenisikan" =>$jenisikan,
+            "img_url" =>$img_url,
+            "namapemesanan" =>$namapemesanan,
+        ];
+
+        $createKeranjang = $this->Crud->createData('keranjang',$data);
+
+    if($createKeranjang){
+        $output = [
+            'status' => 200,
+            'error' => false,
+            'message' => 'success create Keranjang',
+            'data' => $data
+        ];
+            $this->set_response($output,REST_Controller::HTTP_OK);
+        
+    }else{
+        $output = [
+            'status'=> 400,
+            'error'=> false,
+            'message'=> 'failed create Keranjang',
+            'data'=>[]
+        ];
+        $this->set_response($output,REST_Controller::HTTP_BAD_REQUEST);
+    }
+}
+
+    public function keranjang_get()
+    {
+
+        $id = $this->get('id');
+
+
+        if ($id === NULL)
+        {
+            $getKeranjang = $this->Crud->readData('*','keranjang')->result();
+            if ($getKeranjang)
+            {
+                $total = $this->db->query("select SUM(harga) as total from keranjang")->result();
+                // Set the response and exit
+                $output = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Success get Keranjang',
+                    'data'=> $getKeranjang,
+                    'total'=>$total
+                ];
+                $this->response($output, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            }
+            else
+            {
+                // Set the response and exit
+                $output = [
+                    'status' => 404,
+                    'error' => false,
+                    'message' => 'No Keranjang were found',
+                    'data'=> []
+                ];
+                $this->response($output, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+            }
+        }
+
+        if($id){
+            $where = [
+                'id'=> $id
+            ];
+            $getDatapenjualanById = $this->Crud->readData('*','keranjang',$where)->result();
+
+            if($getDatapenjualanById){
+                $output = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Success get Keranjang',
+                    'data'=> $getKeranjangById
+                ];
+                $this->response($output, REST_Controller::HTTP_OK);
+            }else{
+                $output = [
+                    'status' => 404,
+                    'error' => false,
+                    'message' => 'Failed get Keranjang or id Not found',
+                    'data'=> []
+                ];
+                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
+            }
+        }
+
+    }
+    public function keranjang_put(){
+
+        $id = (int) $this->get('id');
+        if($id){
+            $where = [
+                'id'=> $id
+            ];
+            $cekId = $this->Crud->readData('id','keranjang',$where)->num_rows();
+
+            if($cekId > 0){
+                $data = [
+                    "namaikan"      => $this->put('namaikan'),
+                    "jenisikan"  => $this->put('jenisikan'),
+                    "harga"   => $this->put('harga'),
+                    "deskripsi"   => $this->put('deskripsi'),
+                    "stock"   => $this->put('stock'),
+                    "img_url"   => $this->put('img_url'),
+                    "total"   => $this->put('total'),
+                    "namapemesanan"   => $this->put('namapemesanan'),
+                ];
+
+                $updateData = $this->Crud->updateData('keranjang',$data,$where);
+                if($updateData){
+                    $output = [
+                        'status' => 200,
+                        'error' => false,
+                        'message' => 'Success edit data keranjang',
+                    ];
+                    $this->response($output, REST_Controller::HTTP_OK);
+                }else{
+                    $output = [
+                        'status' => 400,
+                        'error' => false,
+                        'message' => 'Failed edit keranjang',
+                    ];
+                    $this->response($output, REST_Controller::HTTP_BAD_REQUEST); 
+                }
+            }else{
+                $output = [
+                    'status' => 404,
+                    'error' => false,
+                    'message' => 'Failed delete keranjang or id not found',
+                ];
+                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
+            }
+        }
+
+    }
+
+    public function keranjang_delete()
+    {
+
+        $id = (int) $this->get('id');
+
+        if($id){
+            $where = [
+                'id'=> $id
+            ];
+            $cekId = $this->Crud->readData('id','keranjang',$where)->num_rows();
+
+            if($cekId > 0){
+                
+                $this->Crud->deleteData('keranjang',$where);
+                $output = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Success delete data Keterangan',
+                ];
+                $this->response($output, REST_Controller::HTTP_OK);
+            }else{
+                $output = [
+                    'status' => 404,
+                    'error' => false,
+                    'message' => 'Failed delete Keterangan or id not found',
+                ];
+                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
+            }
+        }
+    }
 }

@@ -21,7 +21,7 @@
                   <th>Nama Penerima</th>
                     <th>Nama Ikan</th>
                     <th>Harga</th>
-                    <th>Tanggal Pengiriman</th>
+                    <th>Tanggal Pemesanan</th>
                     <th>Jasa Pengiriman</th>
                     <th>Keterangan</th>
                     

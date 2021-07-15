@@ -14,27 +14,27 @@
         <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/proses_edit_datapenjualan/'.$datamenu[0]['id']); ?>">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Pembeli</label>
-                    <input type="text" class="form-control" name="namapenerima" required>
+                    <input type="text" class="form-control" name="namapenerima" value="<?= set_value('namapenerima',$datamenu[0]['namapenerima']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Barang</label>
-                    <input type="text" class="form-control" name="namaikan" required>
+                    <input type="text" class="form-control" name="namaikan" value="<?= set_value('namaikan',$datamenu[0]['namaikan']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Harga</label>
-                    <input type="number" class="form-control" name="harga" required>
+                    <input type="number" class="form-control" name="harga" value="<?= $datamenu[0]['harga']; ?>"required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Pengirim</label>
-                    <input type="date" class="form-control" name="tglpengiriman" required>
+                    <input type="date" class="form-control" name="tglpengiriman" value="<?= $datamenu[0]['tglpengiriman']; ?>"required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Jasa Pengirim</label>
-                    <input type="text" class="form-control" name="jasapengiriman" required>
+                    <input type="text" class="form-control" name="jasapengiriman" value="<?= set_value('jasapengiriman',$datamenu[0]['jasapengiriman']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Keterangan</label>
-                    <input type="text" class="form-control" name="keterangan" required>
+                    <input type="text" class="form-control" name="keterangan" value="<?= set_value('keterangan',$datamenu[0]['keterangan']) ?> "required>
                 </div>
 
 

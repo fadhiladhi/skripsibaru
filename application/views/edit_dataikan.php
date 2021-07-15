@@ -1,3 +1,5 @@
+
+
 <section id="main-content">
       <section class="wrapper">
         <div class="row">
@@ -14,23 +16,23 @@
         <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/proses_edit_dataikan/'.$datamenu[0]['id']); ?>">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Ikan</label>
-                    <input type="text" class="form-control" name="namaikan" required>
+                    <input type="text" class="form-control" name="namaikan" value="<?= set_value('namaikan',$datamenu[0]['namaikan']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">jenis Ikan</label>
-                    <input type="text" class="form-control" name="jenisikan" required>
+                    <input type="text" class="form-control" name="jenisikan" value="<?= set_value('jenisikan',$datamenu[0]['jenisikan']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">harga</label>
-                    <input type="number" class="form-control" name="harga" required>
+                    <input type="number" class="form-control" name="harga" value=<?= $datamenu[0]['harga']; ?> required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">deskripsi</label>
-                    <input type="text" class="form-control" name="deskripsi" required>
+                    <input type="text" class="form-control" name="deskripsi" value="<?= set_value('deskripsi',$datamenu[0]['deskripsi']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">stock</label>
-                    <input type="number" class="form-control" name="stock" required>
+                    <input type="number" class="form-control" name="stock" value=<?= $datamenu[0]['stock']; ?> required>
                 </div>
                 <div class="input-group mb-3">
                 </div>

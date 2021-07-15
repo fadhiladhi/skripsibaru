@@ -21,7 +21,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Username</th>
-                    <th>No HP </th>
                     <th>Role</th>
                     <th>Action</th>
                   </tr>
@@ -35,7 +34,6 @@
                     <td><?= $no; ?></td>
                     <td><?= $user['nama'];?></td>
                     <td><?= $user['username'];?></td>
-                    <td><?= $user['nohp'];?></td>
                     <td><?= $user['role'];?></td>
                     <td>
                       <div class="btn-group">

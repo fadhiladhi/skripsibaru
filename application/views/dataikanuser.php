@@ -38,7 +38,7 @@
                     <td><?= $dataikan['stock'];?></td>
                     <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150"></td>
                     <td>
-                    <a class="btn btn-success" href="<?= base_url('dashboard/kirim_wa/'.$dataikan['id'])?>">WA
+                    <a class="btn btn-success" href="<?= base_url('dashboard/create_keranjang/'.$dataikan['id'])?>">tambah
                     
                     
                     </td>

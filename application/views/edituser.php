@@ -14,19 +14,15 @@
         <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/proses_edit_user/'.$datamenu[0]['id']); ?>">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" name="nama" required>
+                    <input type="text" class="form-control" name="nama" value="<?= set_value('nama',$datamenu[0]['nama']) ?> "required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Username</label>
-                    <input type="text" class="form-control" name="username" required>
+                    <input type="text" class="form-control" name="username" value="<?= set_value('username',$datamenu[0]['username']) ?> " required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Password</label>
                     <input type="text" class="form-control" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">No Hp</label>
-                    <input type="number" class="form-control" name="nohp" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Role</label>
