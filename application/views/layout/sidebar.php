@@ -23,7 +23,7 @@
               <li><a class="" href="<?=base_url('dashboard/dataikan')?>">Data Ikan</a></li>
               <li><a class="" href="<?=base_url('dashboard/user')?>">User</a></li>
               <li><a class="" href="<?=base_url('dashboard/datapengiriman')?>">Data Pengiriman</a></li>
-              <li><a class="" href="<?=base_url('dashboard/datapenjualan')?>">Data Penjualan</a></li>
+              <li><a class="" href="<?=base_url('dashboard/pemesanan')?>">Data Pemesanan</a></li>
             </ul>
           </li>
 

@@ -440,7 +440,7 @@ class Main extends BD_Controller {
     public function datapengiriman_post(){
         $id = $this->post('id');
         $tglpemesanan = $this->post('tglpemesanan');
-        $tglpengiriman = $this->post('tglpengiriman');
+        $noresi = $this->post('noresi');
         $namaikan = $this->post('namaikan');
         $jasapengiriman = $this->post('jasapengiriman');
         $namapenerima = $this->post('namapenerima');
@@ -448,7 +448,7 @@ class Main extends BD_Controller {
         $data = [
             "id" =>$id,
             "tglpemesanan" =>$tglpemesanan,
-            "tglpengiriman" =>$tglpengiriman,
+            "noresi" =>$noresi,
             "namaikan" => $namaikan,
             "jasapengiriman" =>$jasapengiriman,
             "namapenerima" =>$namapenerima,
@@ -480,7 +480,7 @@ class Main extends BD_Controller {
         $namapenerima = $this->post('namapenerima');
         $namaikan = $this->post('namaikan');
         $harga = $this->post('harga');
-        $tglpengiriman = $this->post('tglpengiriman');
+        $noresi = $this->post('noresi');
         $jasapengiriman = $this->post('jasapengiriman');
         $keterangan = $this->post('keterangan');
 
@@ -489,7 +489,7 @@ class Main extends BD_Controller {
             "namapenerima" =>$namapenerima,
             "namaikan" =>$namaikan,
             "harga" => $harga,
-            "tglpengiriman" =>$tglpengiriman,
+            "noresi" =>$noresi,
             "jasapengiriman" =>$jasapengiriman,
             "keterangan" =>$keterangan,
         ];
@@ -524,7 +524,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
-            $getDatapengiriman = $this->Crud->readData('id,tglpemesanan,tglpengiriman,namaikan,jasapengiriman,namapenerima,','datapengiriman')->result();
+            $getDatapengiriman = $this->Crud->readData('id,tglpemesanan,noresi,namaikan,jasapengiriman,namapenerima,status','datapengiriman')->result();
             if ($getDatapengiriman)
             {
                 // Set the response and exit
@@ -553,7 +553,7 @@ class Main extends BD_Controller {
             $where = [
                 'id'=> $id
             ];
-            $getDatapengirimanById = $this->Crud->readData('id,tglpemesanan,tglpengiriman,namaikan,jasapengiriman,namapenerima,','datapengiriman',$where)->result();
+            $getDatapengirimanById = $this->Crud->readData('id,tglpemesanan,noresi,namaikan,jasapengiriman,namapenerima,status','datapengiriman',$where)->result();
 
             if($getDatapengirimanById){
                 $output = [
@@ -575,6 +575,7 @@ class Main extends BD_Controller {
         }
 
     }
+   
     public function datapengiriman_put(){
 
         $id = (int) $this->get('id');
@@ -587,7 +588,7 @@ class Main extends BD_Controller {
             if($cekId > 0){
                 $data = [
                     "tglpemesanan"      => $this->put('tglpemesanan'),
-                    "tglpengiriman"  => $this->put('tglpengiriman'),
+                    "noresi"  => $this->put('noresi'),
                     "namaikan" => $this->put('namaikan'),
                     "jasapengiriman"  => $this->put('jasapengiriman'),
                     "namapenerima"    => $this->put('namapenerima'),
@@ -620,7 +621,90 @@ class Main extends BD_Controller {
         }
 
     }
+    public function checkpengiriman_put(){
 
+        $id = (int) $this->get('id');
+        if($id){
+            $where = [
+                'id'=> $id
+            ];
+            $cekId = $this->Crud->readData('id','datapengiriman',$where)->num_rows();
+
+            if($cekId > 0){
+                $data = [
+                    "status"      => 'pengiriman',
+                   
+                ];
+
+                $updateData = $this->Crud->updateData('datapengiriman',$data,$where);
+                if($updateData){
+                    $output = [
+                        'status' => 200,
+                        'error' => false,
+                        'message' => 'Success edit data pengiriman',
+                    ];
+                    $this->response($output, REST_Controller::HTTP_OK);
+                }else{
+                    $output = [
+                        'status' => 400,
+                        'error' => false,
+                        'message' => 'Failed edit data pengiriman',
+                    ];
+                    $this->response($output, REST_Controller::HTTP_BAD_REQUEST); 
+                }
+            }else{
+                $output = [
+                    'status' => 404,
+                    'error' => false,
+                    'message' => 'Failed delete data pengiriman ikan or id not found',
+                ];
+                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
+            }
+        }
+
+    }
+    public function checkpengirimanuser_put(){
+
+        $id = (int) $this->get('id');
+        if($id){
+            $where = [
+                'id'=> $id
+            ];
+            $cekId = $this->Crud->readData('id','datapengiriman',$where)->num_rows();
+
+            if($cekId > 0){
+                $data = [
+                    "status"      => 'selesai',
+                   
+                ];
+
+                $updateData = $this->Crud->updateData('datapengiriman',$data,$where);
+                if($updateData){
+                    $output = [
+                        'status' => 200,
+                        'error' => false,
+                        'message' => 'Success edit data pengiriman',
+                    ];
+                    $this->response($output, REST_Controller::HTTP_OK);
+                }else{
+                    $output = [
+                        'status' => 400,
+                        'error' => false,
+                        'message' => 'Failed edit data pengiriman',
+                    ];
+                    $this->response($output, REST_Controller::HTTP_BAD_REQUEST); 
+                }
+            }else{
+                $output = [
+                    'status' => 404,
+                    'error' => false,
+                    'message' => 'Failed delete data pengiriman ikan or id not found',
+                ];
+                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
+            }
+        }
+
+    }
     public function datapengiriman_delete()
     {
 
@@ -652,185 +736,7 @@ class Main extends BD_Controller {
         }
     }
 
-    ///Data Penjualan
-
-    public function datapenjualan1_post(){
-        $id = $this->post('id');
-        $namapenerima = $this->post('namapenerima');
-        $namaikan = $this->post('namaikan');
-        $harga = $this->post('harga');
-        $tglpengiriman = $this->post('tglpengiriman');
-        $jasapengiriman = $this->post('jasapengiriman');
-        $keterangan = $this->post('keterangan');
-
-        $data = [
-            "id" =>$id,
-            "namapenerima" =>$namapenerima,
-            "namaikan" =>$namaikan,
-            "harga" =>$harga,
-            "tglpengiriman" =>$tglpengiriman,
-            "jasapengiriman" =>$jasapengiriman,
-            "keterangan" =>$keterangan,
-        ];
-
-        $createDatapenjualan = $this->Crud->createData('datapenjualan',$data);
-
-    if($createDatapenjualan){
-        $output = [
-            'status' => 200,
-            'error' => false,
-            'message' => 'success create data penjualan ikan',
-            'data' => $data
-        ];
-            $this->set_response($output,REST_Controller::HTTP_OK);
-        
-    }else{
-        $output = [
-            'status'=> 400,
-            'error'=> false,
-            'message'=> 'failed create data penjualan ikan',
-            'data'=>[]
-        ];
-        $this->set_response($output,REST_Controller::HTTP_BAD_REQUEST);
-    }
-    }
-
-    public function datapenjualan_get()
-    {
-
-        $id = $this->get('id');
-
-
-        if ($id === NULL)
-        {
-            $getDatapenjualan = $this->Crud->readData('id,namapenerima,namaikan,harga,tglpengiriman,jasapengiriman,keterangan','datapenjualan')->result();
-            if ($getDatapenjualan)
-            {
-                // Set the response and exit
-                $output = [
-                    'status' => 200,
-                    'error' => false,
-                    'message' => 'Success get data penjualan ikan',
-                    'data'=> $getDatapenjualan
-                ];
-                $this->response($output, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
-            }
-            else
-            {
-                // Set the response and exit
-                $output = [
-                    'status' => 404,
-                    'error' => false,
-                    'message' => 'No data penjualan ikan were found',
-                    'data'=> []
-                ];
-                $this->response($output, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
-            }
-        }
-
-        if($id){
-            $where = [
-                'id'=> $id
-            ];
-            $getDatapenjualanById = $this->Crud->readData('id,namapenerima,namaikan,harga,tglpengiriman,jasapengiriman,keterangan','datapenjualan',$where)->result();
-
-            if($getDatapenjualanById){
-                $output = [
-                    'status' => 200,
-                    'error' => false,
-                    'message' => 'Success get data penjualan ikan',
-                    'data'=> $getDatapenjualanById
-                ];
-                $this->response($output, REST_Controller::HTTP_OK);
-            }else{
-                $output = [
-                    'status' => 404,
-                    'error' => false,
-                    'message' => 'Failed get data penjualan ikan or id Not found',
-                    'data'=> []
-                ];
-                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
-            }
-        }
-
-    }
-    public function datapenjualan_put(){
-
-        $id = (int) $this->get('id');
-        if($id){
-            $where = [
-                'id'=> $id
-            ];
-            $cekId = $this->Crud->readData('id','datapenjualan',$where)->num_rows();
-
-            if($cekId > 0){
-                $data = [
-                    "namapenerima"      => $this->put('namapenerima'),
-                    "namaikan"  => $this->put('namaikan'),
-                    "harga"   => $this->put('harga'),
-                    "tglpengiriman"   => $this->put('tglpengiriman'),
-                    "jasapengiriman"   => $this->put('jasapengiriman'),
-                    "keterangan"   => $this->put('keterangan'),
-                ];
-
-                $updateData = $this->Crud->updateData('datapenjualan',$data,$where);
-                if($updateData){
-                    $output = [
-                        'status' => 200,
-                        'error' => false,
-                        'message' => 'Success edit data penjualan ikan',
-                    ];
-                    $this->response($output, REST_Controller::HTTP_OK);
-                }else{
-                    $output = [
-                        'status' => 400,
-                        'error' => false,
-                        'message' => 'Failed edit data penjualan ikan',
-                    ];
-                    $this->response($output, REST_Controller::HTTP_BAD_REQUEST); 
-                }
-            }else{
-                $output = [
-                    'status' => 404,
-                    'error' => false,
-                    'message' => 'Failed delete data penjualan ikan or id not found',
-                ];
-                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
-            }
-        }
-
-    }
-
-    public function datapenjualan_delete()
-    {
-
-        $id = (int) $this->get('id');
-
-        if($id){
-            $where = [
-                'id'=> $id
-            ];
-            $cekId = $this->Crud->readData('id','datapenjualan',$where)->num_rows();
-
-            if($cekId > 0){
-                
-                $this->Crud->deleteData('datapenjualan',$where);
-                $output = [
-                    'status' => 200,
-                    'error' => false,
-                    'message' => 'Success delete data penjualan ikan',
-                ];
-                $this->response($output, REST_Controller::HTTP_OK);
-            }else{
-                $output = [
-                    'status' => 404,
-                    'error' => false,
-                    'message' => 'Failed delete data penjualan ikan or id not found',
-                ];
-                $this->response($output, REST_Controller::HTTP_NOT_FOUND); 
-            }
-        }
-    }
+   
 
     ////KERANJANG
 
@@ -840,7 +746,6 @@ class Main extends BD_Controller {
         $jenisikan = $this->post('jenisikan');
         $harga = $this->post('harga');
         $deskripsi = $this->post('deskripsi');
-        $stock = $this->post('stock');
         $img_url = $this->post('img_url');
         $namapemesanan = $this->post('namapemesanan');
 
@@ -849,7 +754,6 @@ class Main extends BD_Controller {
             "namaikan" =>$namaikan,
             "harga" =>$harga,
             "deskripsi" =>$deskripsi,
-            "stock" =>$stock,
             "jenisikan" =>$jenisikan,
             "img_url" =>$img_url,
             "namapemesanan" =>$namapemesanan,
@@ -885,6 +789,7 @@ class Main extends BD_Controller {
 
         if ($id === NULL)
         {
+            
             $getKeranjang = $this->Crud->readData('*','keranjang')->result();
             if ($getKeranjang)
             {
@@ -914,11 +819,12 @@ class Main extends BD_Controller {
 
         if($id){
             $where = [
-                'id'=> $id
+                'namapemesanan'=> $id
             ];
             $getDatapenjualanById = $this->Crud->readData('*','keranjang',$where)->result();
 
             if($getDatapenjualanById){
+                $total = $this->db->query("select SUM(harga) as total from keranjang")->result();
                 $output = [
                     'status' => 200,
                     'error' => false,

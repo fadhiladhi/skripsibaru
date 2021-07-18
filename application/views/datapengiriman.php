@@ -19,10 +19,11 @@
                 <tbody>
                   <tr>
                     <th>No</th>
-                    <th>Tanggal pemesanan</th>
-                    <th>Nama Ikan</th>
-                    <th>Jasa Pengiriman</th>
-                    <th>Nama Penerima</th>
+                    <th>Nama Pemesanan</th>
+                    <th>Jasa Pemesanan</th>
+                    <th>No Resi</th>
+                    <th>Tanggal Pemesanan</th>
+                    <th>status</th>
                     
                   </tr>
 
@@ -33,20 +34,24 @@
 
                   <tr>
                     <td><?= $no; ?></td>
-                    <td><?= $datapengiriman['tglpemesanan'];?></td>
-                    <td><?= $datapengiriman['namaikan'];?></td>
-                    <td><?= $datapengiriman['jasapengiriman'];?></td>
                     <td><?= $datapengiriman['namapenerima'];?></td>
+                    <td><?= $datapengiriman['jasapengiriman'];?></td>
+                    <td><?= $datapengiriman['noresi'];?></td>
+                    <td><?= $datapengiriman['tglpemesanan'];?></td>
+                    <td><?= $datapengiriman['status'];?></td>
                     
                     <td>
+                      <?php if($datapengiriman['status']=='proses'){?>
                       <div class="btn-group">
-                      <a class="btn btn-edit" href="<?= base_url('dashboard/edit_pengiriman/'.$datapengiriman['id'])?>">edit</i></a>
+                      <a class="btn btn-success" href="<?= base_url('dashboard/proses_check_datapengiriman/'.$datapengiriman['id'])?>"><i class="icon_check"></i></a>
+                      <?php }?>
+                      <a class="btn btn-warning" href="<?= base_url('dashboard/edit_pengiriman/'.$datapengiriman['id'])?>"><i class="icon_pencil"></i></a>
                         <a class="btn btn-danger" href="<?= base_url('dashboard/delete_datapengiriman/'.$datapengiriman['id'])?>"><i class="icon_close_alt2"></i></a>
                     </div>
                     </td>
                   </tr>
                 <?php
-
+                      
                 $no++;
                 }
                 ?>
@@ -71,16 +76,20 @@
                     <label for="exampleInputEmail1">Tanggal Pemesanan</label>
                     <input type="date" class="form-control" name="tglpemesanan" required>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Ikan</label>
-                    <input type="text" class="form-control" name="namaikan" required>
-                </div>
+               
                 <div class="form-group">
                     <label for="exampleInputEmail1">Jasa Pengiriman</label>
                     <input type="text" class="form-control" name="jasapengiriman" required>
+                    <p style="color:red"> jika dalam tahap proses dan dalam proses pengemasan, isi dengan ( - )</p>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Pengirima</label>
+                    <label for="exampleInputEmail1">No Resi</label>
+                    <input type="text" class="form-control" name="noresi" required>
+                    <p style="color:red"> jika dalam tahap proses dan dalam proses pengemasan, isi dengan ( 0 )</p>
+                   
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nama Pemesanan</label>
                     <input type="text" class="form-control" name="namapenerima" required>
                 </div>
 

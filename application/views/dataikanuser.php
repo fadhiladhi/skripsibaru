@@ -21,8 +21,8 @@
                     <th>Jenis Ikan</th>
                     <th>Harga</th>
                     <th>Deskripsi</th>
-                    <th>Stock</th>
                     <th>Gambar</th>
+                    
                   </tr>
 
                   <?php
@@ -35,10 +35,9 @@
                     <td><?= $dataikan['jenisikan'];?></td>
                     <td><?= $dataikan['harga'];?></td>
                     <td><?= $dataikan['deskripsi'];?></td>
-                    <td><?= $dataikan['stock'];?></td>
                     <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150"></td>
                     <td>
-                    <a class="btn btn-success" href="<?= base_url('dashboard/create_keranjang/'.$dataikan['id'])?>">tambah
+                    <a class="btn btn-success" href="<?= base_url('dashboard/create_keranjang/'.$dataikan['id'])?>">Pesan
                     
                     
                     </td>

@@ -14,30 +14,37 @@
               <table class="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
-                    <th>No</th>
-                    <th>Tanggal pemesanan</th>
-                    <th>Tanggal Pengiriman</th>
-                    <th>Jasa Pengiriman</th>
-                    <th>Nama Penerima</th>
+                  <th>No</th>
+                    <th>Nama Pemesanan</th>
+                    <th>Jasa Pemesanan</th>
+                    <th>No Resi</th>
+                    <th>Tanggal Pemesanan</th>
+                    <th>status</th>
                     
                   </tr>
-
+            
                   <?php
                     $no = 1;
                     foreach($datauser as $data  => $datapengiriman){
+                      if($iduser == $datapengiriman['namapenerima']){
                 ?>
 
                   <tr>
-                    <td><?= $no; ?></td>
-                    <td><?= $datapengiriman['tglpemesanan'];?></td>
-                    <td><?= $datapengiriman['tglpengiriman'];?></td>
-                    <td><?= $datapengiriman['jasapengiriman'];?></td>
+                  <td><?= $no; ?></td>
                     <td><?= $datapengiriman['namapenerima'];?></td>
-                    
+                    <td><?= $datapengiriman['jasapengiriman'];?></td>
+                    <td><?= $datapengiriman['noresi'];?></td>
+                    <td><?= $datapengiriman['tglpemesanan'];?></td>
+                    <td><?= $datapengiriman['status'];?></td>
+                    <?php if($datapengiriman['status']=='pengiriman'){?>
+                     <td> <div class="btn-group">
+                      <a class="btn btn-success" href="<?= base_url('dashboard/proses_check_datapengirimanuser/'.$datapengiriman['id'])?>"><i class="icon_check"></i></a>
+                    </td>
+                      <?php }?>
                     
                   </tr>
                 <?php
-
+                      }
                 $no++;
                 }
                 ?>

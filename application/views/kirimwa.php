@@ -11,7 +11,7 @@
         <div class="card-header py-3">
         </div>
         <div class="card-body">
-        <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/proses_kirim_wa/'.$datamenu[0]['id']); ?>">
+        <form method="POST" enctype="multipart/form-data" action="">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
                     <input type="text" class="form-control" name="nama" required>

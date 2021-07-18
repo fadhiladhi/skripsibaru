@@ -43,7 +43,7 @@
                     <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150" ></td>
                     <td>
                       <div class="btn-group">
-                        <a class="btn btn-edit" href="<?= base_url('dashboard/edit_dataikan/'.$dataikan['id'])?>">edit</i></a>
+                        <a class="btn btn-warning" href="<?= base_url('dashboard/edit_dataikan/'.$dataikan['id'])?>"><i class="icon_pencil"></i></a>
                         <a class="btn btn-danger" href="<?= base_url('dashboard/delete_dataikan/'.$dataikan['id'])?>"><i class="icon_close_alt2"></i></a>
                     </div>
                     </td>

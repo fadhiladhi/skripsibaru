@@ -37,7 +37,7 @@
                     <td><?= $user['role'];?></td>
                     <td>
                       <div class="btn-group">
-                      <a class="btn btn-edit" href="<?= base_url('dashboard/edituser/'.$user['id'])?>">edit</i></a>
+                      <a class="btn btn-warning" href="<?= base_url('dashboard/edituser/'.$user['id'])?>"><i class="icon_pencil"></i></a>
                         <a class="btn btn-danger" href="<?= base_url('dashboard/delete_user/'.$user['id'])?>"><i class="icon_close_alt2"></i></a>
                     </div>
                     </td>
@@ -75,10 +75,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Password</label>
                     <input type="password" class="form-control" name="password" required>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">No Hp</label>
-                    <input type="number" class="form-control" name="nohp" required>
-                </div>
+                
                 <div class="form-group">
                     <label for="exampleInputEmail1">Role</label>
                     <br>

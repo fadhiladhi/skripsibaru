@@ -38,7 +38,8 @@ class Auth extends BD_Controller {
             $token['iat'] = $date->getTimestamp();
             $token['exp'] = $date->getTimestamp() + 60*60*5; //To here is to generate token
             $output['token'] = JWT::encode($token,$kunci ); //This is the output token
-            $output['role'] = $val->role; //This is the output token
+            $output['role'] = $val->role;
+            $output['id'] = $val->id; //This is the output token
             $this->set_response($output, REST_Controller::HTTP_OK); //This is the respon if success
         }
         else {
@@ -50,9 +51,6 @@ class Auth extends BD_Controller {
         $id = $this->post('id');
         $nama = $this->post('nama');
         $password = sha1($this->post('password'));
-        $email = $this->post('email');
-        $alamat = $this->post('alamat');
-        $nohp = $this->post('nohp');
         $role = $this->post('role');
         $username = $this->post('username');
 
@@ -60,9 +58,6 @@ class Auth extends BD_Controller {
             "id" =>$id,
             "nama" =>$nama,
             "password" =>$password,
-            "email" =>$email,
-            "alamat" =>$alamat,
-            "nohp" =>$nohp,
             "role" =>$role,
             "username" =>$username
         ];

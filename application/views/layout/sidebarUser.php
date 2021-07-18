@@ -12,7 +12,7 @@
                       <ul class="sub">
               <li><a class="" href="<?=base_url('dashboard/dataikan')?>">Data Ikan</a></li>
               <li><a class="" href="<?=base_url('dashboard/datapengiriman')?>">Data Pengiriman</a></li>
-              <li><a class="" href="<?=base_url('dashboard/keranjang')?>">Keranjang</a></li>
+              <li><a class="" href="<?=base_url('dashboard/pemesanan')?>">Pemesanan</a></li>
             </ul>  
 
 
