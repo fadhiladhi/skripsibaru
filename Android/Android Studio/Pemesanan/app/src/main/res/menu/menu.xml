@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/dataikan"
+            android:title="Data Ikan"
+            android:icon="@drawable/dataikan"
+            app:cnb_backgroundColor="#ffffff"
+            app:cnb_iconColor="#000000"
+            app:cnb_textColor="#000000"/>
+    <item
+        android:id="@+id/datapengiriman"
+        android:title="Data Pengiriman"
+        android:icon="@drawable/ic_baseline_send_24"
+        app:cnb_backgroundColor="#ffffff"
+        app:cnb_iconColor="#000000"
+        app:cnb_textColor="#000000"/>
+    <item
+        android:id="@+id/menu_pemesanan"
+        android:title="Pemesanan"
+        android:icon="@drawable/cart"
+        app:cnb_backgroundColor="#ffffff"
+        app:cnb_iconColor="#000000"
+        app:cnb_textColor="#000000"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"
+        app:cnb_backgroundColor="#ffffff"
+        app:cnb_iconColor="#000000"
+        app:cnb_textColor="#000000"/>
+</menu>

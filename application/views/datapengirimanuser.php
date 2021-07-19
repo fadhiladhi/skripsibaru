@@ -16,7 +16,7 @@
                   <tr>
                   <th>No</th>
                     <th>Nama Pemesanan</th>
-                    <th>Jasa Pemesanan</th>
+                    <th>Jasa Pengiriman</th>
                     <th>No Resi</th>
                     <th>Tanggal Pemesanan</th>
                     <th>status</th>
@@ -93,7 +93,6 @@
           
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
         <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
       </div>

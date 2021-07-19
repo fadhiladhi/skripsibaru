@@ -20,10 +20,11 @@
                   <tr>
                     <th>No</th>
                     <th>Nama Pemesanan</th>
-                    <th>Jasa Pemesanan</th>
+                    <th>Jasa Pengiriman</th>
                     <th>No Resi</th>
                     <th>Tanggal Pemesanan</th>
-                    <th>status</th>
+                    <th>Status</th>
+                    <th>Action</th>
                     
                   </tr>
 

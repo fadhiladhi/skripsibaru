@@ -22,7 +22,6 @@
                     <th>Harga</th>
                     <th>Deskripsi</th>
                     <th>Gambar</th>
-                    
                   </tr>
 
                   <?php
@@ -37,7 +36,7 @@
                     <td><?= $dataikan['deskripsi'];?></td>
                     <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150"></td>
                     <td>
-                    <a class="btn btn-success" href="<?= base_url('dashboard/create_keranjang/'.$dataikan['id'])?>">Pesan
+                    <a class="btn btn-success" href="<?= base_url('dashboard/create_keranjang/'.$dataikan['id'])?>">tambah
                     
                     
                     </td>
@@ -81,10 +80,6 @@
                 <label for="exampleInputEmail1">deskripsi</label>
                 <input type="nama" class="form-control" name="deskripsi" required>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">stock</label>
-                <input type="number" class="form-control" name="stock" required>
-            </div>
           
             <div>
             <label for="gambar">Gambar</label>
@@ -94,7 +89,6 @@
           
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
         <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
       </div>

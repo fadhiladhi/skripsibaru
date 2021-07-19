@@ -30,10 +30,6 @@
                     <label for="exampleInputEmail1">deskripsi</label>
                     <input type="text" class="form-control" name="deskripsi" value="<?= set_value('deskripsi',$datamenu[0]['deskripsi']) ?> "required>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">stock</label>
-                    <input type="number" class="form-control" name="stock" value=<?= $datamenu[0]['stock']; ?> required>
-                </div>
                 <div class="input-group mb-3">
                 </div>
                 <div class="form-group">

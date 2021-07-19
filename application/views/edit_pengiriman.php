@@ -17,8 +17,8 @@
                     <input type="date" class="form-control" name="tglpemesanan" value="<?= $datamenu[0]['tglpemesanan']; ?>"required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Ikan</label>
-                    <input type="text" class="form-control" name="namaikan" value="<?= set_value('namaikan',$datamenu[0]['namaikan']) ?> "required>
+                    <label for="exampleInputEmail1">No Resi</label>
+                    <input type="number" class="form-control" name="noresi" value=<?= $datamenu[0]['noresi']; ?> required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Jasa Pengiriman</label>

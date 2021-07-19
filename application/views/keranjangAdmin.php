@@ -2,7 +2,7 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"></i>KERANJANG</h3>
+            <h3 class="page-header"></i>DATA PEMESANAN</h3>
             
            
             
@@ -25,6 +25,7 @@
                     <th>Deskripsi</th>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gambar</th>
                     <th>Namapemesanan</th>
+                    <th>Action</th>
                   </tr>
 
                   <?php

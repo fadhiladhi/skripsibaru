@@ -24,7 +24,6 @@
                     <th>Jenis Ikan</th>
                     <th>Harga</th>
                     <th>Deskripsi</th>
-                    <th>Stock</th>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gambar</th>
                     <th>Action</th>
                   </tr>
@@ -39,7 +38,6 @@
                     <td><?= $dataikan['jenisikan'];?></td>
                     <td><?= $dataikan['harga'];?></td>
                     <td><?= $dataikan['deskripsi'];?></td>
-                    <td><?= $dataikan['stock'];?></td>
                     <td><img src="<?=base_url('uploads/'.$dataikan["img_url"]) ?>" with = "200" height="150" ></td>
                     <td>
                       <div class="btn-group">
@@ -72,7 +70,7 @@
       <div class="modal-body">
       <form method="POST" enctype="multipart/form-data" action="<?= base_url('dashboard/create_dataikan'); ?>">
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama</label>
+                <label for="exampleInputEmail1">Nama Ikan</label>
                 <input type="text" class="form-control" name="namaikan" required>
             </div>
             <div class="form-group">
@@ -87,10 +85,6 @@
                 <label for="exampleInputEmail1">deskripsi</label>
                 <input type="nama" class="form-control" name="deskripsi" required>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">stock</label>
-                <input type="number" class="form-control" name="stock" required>
-            </div>
           
             <div>
             <label for="gambar">Gambar</label>
@@ -100,7 +94,6 @@
           
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
         <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
       </div>

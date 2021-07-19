@@ -2,7 +2,7 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"></i>EDIT USER</h3>
+            <h3 class="page-header"></i>USER</h3>
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Edit User</h1>

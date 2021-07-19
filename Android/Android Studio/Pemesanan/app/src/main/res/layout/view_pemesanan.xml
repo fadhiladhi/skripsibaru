@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:background="@drawable/bg_viewitem"
+    android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_pemesanan"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"/>
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/namaikan_pemesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marbel Pink"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/jenisikan_pemesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plakat"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/harga_pemesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="150000"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/deskripsi_pemesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="usia 3,5 Bulan Size M-"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

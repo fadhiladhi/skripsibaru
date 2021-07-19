@@ -1022,7 +1022,7 @@ public function proses_edit_datapengiriman($id){
       $dataCreate = [
         'tglpemesanan'=> $this->input->post('tglpemesanan'),
         'tglpengiriman'=> $this->input->post('tglpengiriman'),
-        'namaikan'=> $this->input->post('namaikan'),
+        'noresi'=> $this->input->post('noresi'),
         'jasapengiriman'=> $this->input->post('jasapengiriman'),
         'namapenerima'=> $this->input->post('namapenerima')
       ];
@@ -1348,7 +1348,7 @@ public function delete_keranjang($id){
       $deleteUser = json_decode($result,true);
       if($deleteUser['status'] == 200){
         echo ("<script LANGUAGE='JavaScript'>
-        window.alert('keranjang deleted!');
+        window.alert('Pemesanan deleted!');
         window.location.href='".base_url('dashboard/pemesanan')."';
         </script>");
       }else{

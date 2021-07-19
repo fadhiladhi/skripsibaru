@@ -2,7 +2,7 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"></i>PEMESANAN</h3>
+            <h3 class="page-header"></i>DATA PEMESANAN</h3>
         
            <?php $namaikan; ?>
             <a class="btn btn-success" href="<?= 
